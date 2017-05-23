@@ -1,9 +1,13 @@
+import React,{Component} from 'react';
+import firebase from 'firebase';
+import logo from './logo.svg';
+import './App.css';
 
 class Login extends Component {
 
   render() { 
     return (
-        <div> // Etiqueta contenedora
+        <div> // Etique ta contenedora
           //Evalua si existe un usuario valido
           {this.props.user ? this.renderUserData() : this.renderLoginButton()}  
         </div>   
@@ -12,27 +16,29 @@ class Login extends Component {
 
   renderLoginButton(){ // Se ejecuta está función si el usuario es null,no existe
     return (
-          <img width={80} height={80} src={logo} alt=""/>
-          <h3 className="white-text" >Bienvenido</h3>
+        <div> //etiqueta contenedora
+          <img width={80} height={80} src={logo} alt=""></img>
+          <h3 className="white-text">Bienvenido</h3>
           <button className=" waves-effect waves-light btn red"
            onClick={this.props.handleAuth}    // En caso de clic en el boton se ejecuta la funcion 
                                               // Que le pasamos como prop
           >
            Login
           </button>
+        </div>
       )
   }
 
   renderUserData() {  // Se ejecuta está función si existe un usuario,no es null
     return (
-        <div className="white-text" style={fontFamily: 'Anton'} > //Etiqueta contenedora
+        <div className="white-text" style={{fontFamily: 'Anton'}} > //Etiqueta contenedora
           <img   // Aqui mostraremos la imagen de perfil del usuario
             className="circle" 
             width={80} 
             height={80} 
             src={this.props.user.photoURL} 
             alt=""
-          >
+          ></img>
           <h4>{this.props.user.displayName}</h4> // Mostrará el nombre de usuario
           <h6>{this.props.user.email}</h6> //Mostrará el email del usuario
           <button  //  Hacemos que se ejecute la funcion que le pasamos como prop en la clase App
@@ -40,7 +46,7 @@ class Login extends Component {
             onClick={this.propos.handleLogout} 
           >
             Salir
-          <button>
+          </button>
         </div>
       )
   }
@@ -101,7 +107,7 @@ class App extends Component {
 
   render() { 
     return (
-      <div class="center"> // Etiqueta contenedora
+      <div className="center"> // Etiqueta contenedora
         <div>
           <Login               //Etiqueta de nuestro component Login 
             user={this.state.user} //Pasamos como props el obj user
@@ -142,4 +148,6 @@ class App extends Component {
 
   
 }
+
+export default App;
 
